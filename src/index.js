@@ -2,7 +2,6 @@
 
 require('dotenv').config();
 var Airtable = require('airtable');
-var base = new Airtable({apiKey: AIRTABLE_API_KEY}).base(AIRTABLE_BASE_ID);
 
 /*
  * Configuration
@@ -21,6 +20,12 @@ const SLACK_VERIFICATION_TOKEN = process.env.SLACK_VERIFICATION_TOKEN;
 const SLACK_OAUTH_TOKEN = process.env.SLACK_OAUTH_TOKEN;
 const SLACK_WELCOME_CHANNEL = process.env.SLACK_WELCOME_CHANNEL;
 const SLACK_POST_TO_CHANNEL = process.env.SLACK_POST_TO_CHANNEL;
+const AIRTABLE_API_KEY = process.env.AIRTABLE_API_KEY;
+const AIRTABLE_BASE_ID = process.env.AIRTABLE_BASE_ID;
+
+
+var base = new Airtable({apiKey: AIRTABLE_API_KEY}).base(AIRTABLE_BASE_ID);
+
 
 // set up the Express app
 const app = express();
