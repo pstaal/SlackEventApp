@@ -5,12 +5,13 @@
 
 # reference these in your code with process.env.SECRET
 
+AIRTABLE_BASE_ID=appg9N6hwU3mbV2rj
+AIRTABLE_API_KEY=keyF9h4GsvQUISKeM
 SLACK_VERIFICATION_TOKEN=
 SLACK_OAUTH_TOKEN=
 SLACK_WELCOME_CHANNEL=C023JLTS9D0
 SLACK_POST_TO_CHANNEL=C023B2818MP
-AIRTABLE_BASE_ID=appg9N6hwU3mbV2rj
-AIRTABLE_API_KEY=keyF9h4GsvQUISKeM
+
 
 
 # note: .env is a shell file so there can't be spaces around =
