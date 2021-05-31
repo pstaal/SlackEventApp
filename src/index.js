@@ -57,7 +57,7 @@ app.post('/slack/events', (req, res) => {
         if (req.body.token === SLACK_VERIFICATION_TOKEN) {
           const event = req.body.event;
 
-          if(event.type === 'member_joined_channel'){
+          if(event.type === 'member_joined_channel' || event.type === 'app_mention'){
             res.status(200).end();
 
             // you will receive a `member_joined_channel` event for every channel, so make sure it's the right one
