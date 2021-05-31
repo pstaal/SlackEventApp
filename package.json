@@ -8,6 +8,7 @@
   },
   "author": "Jim Ray <jimray@slack-corp.com>",
   "dependencies": {
+    "airtable": "^0.11.1",
     "axios": "^0.17.1",
     "body-parser": "^1.19.0",
     "dotenv": "^5.0.0",
