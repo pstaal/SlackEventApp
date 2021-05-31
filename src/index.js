@@ -24,7 +24,7 @@ const AIRTABLE_API_KEY = process.env.AIRTABLE_API_KEY;
 const AIRTABLE_BASE_ID = process.env.AIRTABLE_BASE_ID;
 
 
-var base = new Airtable({apiKey: AIRTABLE_API_KEY}).base(AIRTABLE_BASE_ID);
+var base = new Airtable({apiKey: 'keyF9h4GsvQUISKeM'}).base('appg9N6hwU3mbV2rj');
 
 
 // set up the Express app
