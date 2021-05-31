@@ -1,6 +1,8 @@
 "use strict";
 
 require('dotenv').config();
+var Airtable = require('airtable');
+var base = new Airtable({apiKey: AIRTABLE_API_KEY}).base(AIRTABLE_BASE_ID);
 
 /*
  * Configuration
