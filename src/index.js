@@ -165,7 +165,7 @@ app.post('/slack/components', (req, res) => {
         {
           "fields" : {
             "Name": `${submission['full-name']}`,
-            "Fun fact": `${submission['message-url']}`,
+            "Fun fact": `${submission['fun-fact']}`,
             "T-Shirt Size": `${submission['shirt-size']}`
           }
 
