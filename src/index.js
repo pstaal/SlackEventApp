@@ -1,6 +1,7 @@
 "use strict";
 
 require('dotenv').config();
+const { Base } = require('airtable');
 var Airtable = require('airtable');
 
 /*
@@ -25,7 +26,7 @@ const AIRTABLE_BASE_ID = process.env.AIRTABLE_BASE_ID;
 
 
 var base = new Airtable({apiKey: 'keyF9h4GsvQUISKeM'}).base('appg9N6hwU3mbV2rj');
-
+console.log(base)
 
 // set up the Express app
 const app = express();
@@ -160,31 +161,49 @@ app.post('/slack/components', (req, res) => {
         // `chat.postMessage` posts a message that everyone in the channel can see
         // https://api.slack.com/methods/chat.postMessage
         // TODO: rather than post this to a Slack channel, can you submit this to an online spreadsheet or database, like Airtable?
-        axios.post('/api/chat.postMessage', {
-          channel: SLACK_POST_TO_CHANNEL,
-          attachments: [
-            {
-              fallback: "Someone is coming to the party!",
-              color: "#99badd",
-              pretext: ":tada: Someone is coming to the party!",
-              title: `${submission['full-name']}`,
-              text: `${submission['message-url']}`,
-              fields: [
-                {
-                  title: "T-shirt size",
-                  value: `${submission['shirt-size']}`,
-                  short: false
-                }
-              ]
-            }
-          ]
-        })
-        .then(function(res){
-          // console.log(res);
-        })
-        .catch(function (error) {
-          console.log(error);
+        base('Contacts').create([
+        {
+          "fields" : {
+            "Name": `${submission['full-name']}`,
+            "Fun fact": `${submission['message-url']}`,
+            "T-Shirt Size": `${submission['shirt-size']}`
+          }
+
+        }], function(err, records) {
+          if (err) {
+            console.error(err);
+            return;
+          }
+          records.forEach(function (record) {
+            console.log(record.getId());
+          });
         });
+
+        //axios.post('/api/chat.postMessage', {
+         // channel: SLACK_POST_TO_CHANNEL,
+         // attachments: [
+         //   {
+         //     fallback: "Someone is coming to the party!",
+          //    color: "#99badd",
+          //    pretext: ":tada: Someone is coming to the party!",
+          //    title: `${submission['full-name']}`,
+          //    text: `${submission['message-url']}`,
+          //    fields: [
+          //      {
+           //       title: "T-shirt size",
+          //        value: `${submission['shirt-size']}`,
+          //        short: false
+           //     }
+          //    ]
+         //   }
+        //  ]
+        //})
+       // .then(function(res){
+          // console.log(res);
+       // })
+       // .catch(function (error) {
+       //   console.log(error);
+       // });
         
       }
     }
