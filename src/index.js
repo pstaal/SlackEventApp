@@ -153,6 +153,13 @@ app.post('/slack/components', (req, res) => {
         }
         else if (action['value'] === 'later'){
           const userId = payload.user.id;
+          axios.post('https://slack.com/api/chat.postMessage', {channel: userId, text: 'Hi, this is a friendly reminder to fill in the event form.'})
+          .then(function(res){
+
+          })
+          .catch(function(error) {
+            console.log(error);
+          });
         
         }
         // TODO: handle the case of what happens if the user clicks the `later` button. Maybe remind them in a day?
