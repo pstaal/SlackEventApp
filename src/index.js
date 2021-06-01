@@ -126,7 +126,7 @@ app.post('/slack/components', (req, res) => {
   // the payload will vary depending on the type of component -- message button or dialog -- is being sent
   // console log it out to get a feel for it
   const payload = JSON.parse(req.body.payload);
-  //console.log(payload);
+  console.log(payload);
 
   //verify the request is coming from Slack by validating the token
   if (payload.token === SLACK_VERIFICATION_TOKEN) {
