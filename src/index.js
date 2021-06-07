@@ -153,12 +153,12 @@ app.post('/slack/components', (req, res) => {
           console.log(userId);
           console.log('-----userID-----');
           let userInfo;
-          axios.get('https://slack.com/api/users.info', {user: userId})
+          axios.get('https://slack.com/api/users.info', {user: `${userId}`})
           .then(function(res){
            console.log('-----------------HERE start RES------');
            console.log(res);
            console.log('-----------------HERE end RES------');
-           userInfo = res.user.real_name;   
+           userInfo = res.user.profile.real_name;   
            console.log(userInfo);
           })
           .catch(function(error) {
