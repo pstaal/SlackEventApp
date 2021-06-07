@@ -157,8 +157,6 @@ app.post('/slack/components', (req, res) => {
         else if (action['value'] === 'later'){
           const reminderFunction = () => {
             const userId = payload.user.id;
-            console.log(userId);
-            console.log('I am in a welcome dialog')
             axios.post('https://slack.com/api/chat.postMessage', {channel: userId, text: 'Hi, this is a friendly reminder to fill in the event form.'})
                     .then(function(res){
           
