@@ -166,7 +166,7 @@ app.post('/slack/components', (req, res) => {
         }
         else if (action['value'] === 'later'){
           const userId = payload.user.id;
-          setInterval(reminderFunction(userId), 5000);
+          setInterval(reminderFunction, 5000);
         
         }
         // TODO: handle the case of what happens if the user clicks the `later` button. Maybe remind them in a day?
