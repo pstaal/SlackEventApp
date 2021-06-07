@@ -145,8 +145,13 @@ app.post('/slack/components', (req, res) => {
         // the user has clicked the button to show the form
         if(action['value'] === 'show_form'){
           // respond by sending the actual dialog
+          console.log('-----payload-----');
+          console.log(payload.user);
+          console.log('-----payload-----');
           const userId = payload.user.id;
+          console.log('-----userID-----');
           console.log(userId);
+          console.log('-----userID-----');
           let userInfo;
           axios.get('https://slack.com/api/users.info', {user: userId})
           .then(function(res){
