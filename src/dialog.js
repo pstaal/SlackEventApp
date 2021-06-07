@@ -14,7 +14,8 @@ module.exports = (triggerId, userInfo) => {
         {
           label: 'Full name',
           type: 'text',
-          name: `${userInfo}`,
+          name: 'full-name',
+          value: `${userInfo}`,
           hint: 'First and last name, please',
         },
         {
