@@ -145,7 +145,8 @@ app.post('/slack/components', (req, res) => {
         // the user has clicked the button to show the form
         if(action['value'] === 'show_form'){
           // respond by sending the actual dialog
-          const welcomeDialog = dialogTemplate(payload.trigger_id);
+          const userId = payload.user.id;
+          const welcomeDialog = dialogTemplate(payload.trigger_id, userId);
           axios.post('https://slack.com/api/dialog.open', welcomeDialog)
           .then(function(res){
           console.log(res);
