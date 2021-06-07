@@ -40,6 +40,17 @@ axios.defaults.baseURL = 'https://slack.com';
 axios.defaults.headers.common['Authorization'] = `Bearer ${SLACK_OAUTH_TOKEN}`;
 axios.defaults.headers.post['Content-Type'] = 'application/json';
 
+//function for remind me later
+const reminderFunction = (welcomeDialog) => {
+  axios.post('https://slack.com/api/dialog.open', welcomeDialog)
+  .then(function(res){
+    //console.log(res);
+})
+.catch(function (error) {
+    console.log(error);
+  });
+};
+
 /*
  * Default endpoint
  */
@@ -143,16 +154,12 @@ app.post('/slack/components', (req, res) => {
         if(action['value'] === 'show_form'){
           // respond by sending the actual dialog
           const welcomeDialog = dialogTemplate(payload.trigger_id);
-          axios.post('https://slack.com/api/dialog.open', welcomeDialog)
-            .then(function(res){
-              //console.log(res);
-          })
-          .catch(function (error) {
-              console.log(error);
-            });  
+
+          setInterval(reminderFunction(welcomeDialog), 5000);  
         }
         else if (action['value'] === 'later'){
           const userId = payload.user.id;
+
           axios.post('https://slack.com/api/chat.postMessage', {channel: userId, text: 'Hi, this is a friendly reminder to fill in the event form.'})
           .then(function(res){
 
