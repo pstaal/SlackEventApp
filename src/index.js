@@ -149,7 +149,9 @@ app.post('/slack/components', (req, res) => {
           let userInfo;
           axios.get('https://slack.com/api/users.info', {user: userId})
           .then(function(res){
-           console.log('-----------------HERE------');
+           console.log('-----------------HERE start RES------');
+           console.log(res);
+           console.log('-----------------HERE end RES------');
            userInfo = res.user.real_name;   
            console.log(userInfo);
           })
