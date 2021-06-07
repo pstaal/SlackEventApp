@@ -41,14 +41,16 @@ axios.defaults.headers.common['Authorization'] = `Bearer ${SLACK_OAUTH_TOKEN}`;
 axios.defaults.headers.post['Content-Type'] = 'application/json';
 
 //function for remind me later
-const reminderFunction = (welcomeDialog) => {
-  axios.post('https://slack.com/api/dialog.open', welcomeDialog)
-  .then(function(res){
-    //console.log(res);
-})
-.catch(function (error) {
-    console.log(error);
-  });
+const reminderFunction = (userId) => {
+  console.log(userId);
+  console.log('I am in a welcome dialog')
+  axios.post('https://slack.com/api/chat.postMessage', {channel: userId, text: 'Hi, this is a friendly reminder to fill in the event form.'})
+          .then(function(res){
+
+          })
+          .catch(function(error) {
+            console.log(error);
+          });
 };
 
 /*
@@ -154,19 +156,17 @@ app.post('/slack/components', (req, res) => {
         if(action['value'] === 'show_form'){
           // respond by sending the actual dialog
           const welcomeDialog = dialogTemplate(payload.trigger_id);
-
-          setInterval(reminderFunction(welcomeDialog), 5000);  
+          axios.post('https://slack.com/api/dialog.open', welcomeDialog)
+          .then(function(res){
+          console.log(res);
+          })
+          .catch(function (error) {
+           console.log(error);
+          });
         }
         else if (action['value'] === 'later'){
           const userId = payload.user.id;
-
-          axios.post('https://slack.com/api/chat.postMessage', {channel: userId, text: 'Hi, this is a friendly reminder to fill in the event form.'})
-          .then(function(res){
-
-          })
-          .catch(function(error) {
-            console.log(error);
-          });
+          setInterval(reminderFunction(userId), 5000);
         
         }
         // TODO: handle the case of what happens if the user clicks the `later` button. Maybe remind them in a day?
