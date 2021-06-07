@@ -3,6 +3,7 @@
 // can you determine their name programatically?
 // Give https://api.slack.com/methods/users.info
 const axios = require('axios');
+const SLACK_OAUTH_TOKEN = process.env.SLACK_OAUTH_TOKEN;
 // set up Axios
 axios.defaults.baseURL = 'https://slack.com';
 axios.defaults.headers.common['Authorization'] = `Bearer ${SLACK_OAUTH_TOKEN}`;
