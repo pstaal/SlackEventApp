@@ -167,7 +167,7 @@ app.post('/slack/components', (req, res) => {
                       console.log(error);
                     });
           };
-          setInterval(reminderFunction, 5000);
+          setTimeout(reminderFunction, 5000);
         
         }
         // TODO: handle the case of what happens if the user clicks the `later` button. Maybe remind them in a day?
